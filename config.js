@@ -12,7 +12,7 @@ window.LITTLEGO_CONFIG = {
   //   e.g. "https://littlego-api.onrender.com/public/waitlist"
   // Any endpoint that accepts JSON and returns 2xx on success also works.
   // ---------------------------------------------------------------------------
-  waitlistEndpoint: "",
+  waitlistEndpoint: "https://littlego-api.onrender.com/public/waitlist",
 
   // Request timeout for the waitlist POST, in milliseconds.
   waitlistTimeoutMs: 15000,

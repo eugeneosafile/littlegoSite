@@ -27,7 +27,7 @@ Nothing below is faked. Each item is visible in the code and listed here so it c
 
 | Item | Current state | What to do |
 | --- | --- | --- |
-| **Waitlist backend** | `waitlistEndpoint` is empty in `config.js`. The form validates fully but, on submit, tells the visitor sign-ups aren't switched on yet. It never shows success unless the server returns 2xx. | Add `integration/fastapi_waitlist.py` to the API (§3), then set `waitlistEndpoint: "https://littlego-api.onrender.com/public/waitlist"`. |
+| **Waitlist backend** | Connected: `waitlistEndpoint` points at `https://littlego-api.onrender.com/public/waitlist` (in the `littlego` repo since commit `0fa1957`). The form only shows success when the API returns 2xx. | Add `https://littlego.ng,https://www.littlego.ng` to `LITTLEGO_CORS_ORIGINS` on `littlego-api`, or browsers will block the request. |
 | **Hero photo** | No licensed photo yet. The hero frame shows a route illustration behind the app concept. | License or commission a photo of a Nigerian parent and school-age child (WebP, ~1000×1200, under 180 KB). Put it in `assets/img/` and set `heroPhoto` and `heroPhotoAlt` in `config.js`. It fills the frame behind the phone automatically. |
 | **App concept in the hero** | Illustrative screen, captioned "Concept preview · not yet live". | Replace with real screenshots once the app is closer to launch. |
 | **Contact email** | `hello@littlego.ng` shown as plain text with "Mailbox launching soon". | Create the mailbox, then set `contactEmailReady: true`. |
@@ -57,7 +57,7 @@ Nothing below is faked. Each item is visible in the code and listed here so it c
 LITTLEGO_CORS_ORIGINS = https://littlego-dashboard.onrender.com,https://littlego.ng,https://www.littlego.ng
 ```
 
-**d. Turn the form on.** Set `waitlistEndpoint` in `config.js`, commit, push.
+**d. The form is already pointed at the API.** Check the CORS step above is done, then submit a test sign-up.
 
 **Check before announcing:** submit the form on your phone, confirm the row appears (`select email, area, journeys, created_at from waitlist_signups order by created_at desc;`), then test the share preview at opengraph.xyz.
 
@@ -65,7 +65,10 @@ LITTLEGO_CORS_ORIGINS = https://littlego-dashboard.onrender.com,https://littlego
 
 ---
 
-## 3. Waitlist API (`integration/fastapi_waitlist.py`)
+## 3. Waitlist API
+
+The live version is in the main `littlego` repo (`backend/app/routers/waitlist.py`), with its migration and tests; ops can see sign-ups at `/ops/waitlist` and download `/ops/waitlist.csv`. `integration/fastapi_waitlist.py` here is the original standalone reference.
+
 
 1. Copy it into the main LittleGo backend, e.g. `backend/app/routers/public_waitlist.py`.
 2. Fix the one `from app.db import Base, get_db` line to match the project.
