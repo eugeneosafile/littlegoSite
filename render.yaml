@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: littlego-site
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    domains:
+      - littlego.ng
+      - www.littlego.ng
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=604800
