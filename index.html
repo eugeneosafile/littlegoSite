@@ -2,13 +2,12 @@
 <html lang="en-NG">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LittleGo — Little journeys. Big peace of mind.</title>
   <meta name="description" content="LittleGo is being built to help Nigerian parents coordinate their children's journeys — school runs, lessons, sports and beyond — with greater confidence. Coming soon to Lagos. Join the early-access waitlist.">
   <link rel="canonical" href="https://littlego.ng/">
-  <meta name="theme-color" content="#245BDB">
+  <meta name="theme-color" content="#0A1F3F">
 
-  <!-- Social sharing -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="LittleGo">
   <meta property="og:url" content="https://littlego.ng/">
@@ -17,6 +16,7 @@
   <meta property="og:image" content="https://littlego.ng/assets/img/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="LittleGo — Little journeys. Big peace of mind. Coming soon to Lagos.">
   <meta property="og:locale" content="en_NG">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LittleGo — Little journeys. Big peace of mind.">
@@ -24,9 +24,12 @@
   <meta name="twitter:image" content="https://littlego.ng/assets/img/og-image.png">
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Geist:wght@400;500;600&family=Plus+Jakarta+Sans:wght@800&display=swap">
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <script type="application/ld+json">
@@ -35,7 +38,7 @@
     "@type": "Organization",
     "name": "LittleGo",
     "url": "https://littlego.ng/",
-    "logo": "https://littlego.ng/assets/img/favicon.svg",
+    "logo": "https://littlego.ng/assets/img/icon-512.png",
     "slogan": "Little journeys. Big peace of mind.",
     "areaServed": "Lagos, Nigeria"
   }
@@ -44,315 +47,340 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Icon sprite -->
   <svg width="0" height="0" class="sr-only" aria-hidden="true" focusable="false">
+    <!-- LittleGo mark (Option A). Colours come from --mk-body, --mk-accent, --mk-gold. -->
+    <symbol id="logo-mark" viewBox="0 0 120 120">
+      <path d="M94,30 C86,21 76,18 62,18 C36,18 20,33 20,58 L20,64 C20,89 36,102 60,102" fill="none" stroke="var(--mk-body, #0F2D5B)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M60,102 C84,102 100,90 100,68 L100,62 L78,62" fill="none" stroke="var(--mk-accent, #008F7A)" stroke-width="18" stroke-linejoin="round"/>
+      <circle cx="78" cy="62" r="9" fill="var(--mk-accent, #008F7A)"/>
+      <circle cx="57" cy="62" r="9" fill="var(--mk-gold, #F4B400)"/>
+    </symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.4 7.5 9.5 4.4-1.1 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m8.8 12.2 2.2 2.2 4.3-4.4"/></symbol>
     <symbol id="i-badge" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 20c.8-3.4 3.4-5.5 6.5-5.5s5.7 2.1 6.5 5.5"/><path d="m15.5 4.5 1.2 1.2 2.3-2.3"/></symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
     <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><path d="M18 9.5c1.7 0 3-1.3 3-3 0-1.9-3-4.5-3-4.5s-3 2.6-3 4.5c0 1.7 1.3 3 3 3Z"/><path d="M8.2 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h3"/></symbol>
-    <symbol id="i-request" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 6h4"/><path d="M9.5 13.5h5"/><path d="M12 11v5"/></symbol>
-    <symbol id="i-coordinate" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8 8.5 10.5 15M16 8.5 13.5 15M8.5 7h7"/></symbol>
-    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
-    <symbol id="i-handover" viewBox="0 0 24 24"><path d="M3 13.5 7 10l3 1.5h4a1.5 1.5 0 0 1 0 3h-3"/><path d="m3 18 4-1 6.5 1.5L21 14"/><path d="M15.5 4.5 17 6l3-3"/></symbol>
     <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
     <symbol id="i-people" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.4"/><path d="M3 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5"/><path d="M14.5 14.4c.6-.3 1.3-.4 2-.4 2.2 0 4 1.6 4.5 4"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8.5-8.5M16 7l2.5 2.5M14 9l2 2"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
   </svg>
 
+  <!-- ================= HEADER ================= -->
   <header class="site-header" data-header>
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="LittleGo home">
-        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-          <rect width="40" height="40" rx="12" fill="#245BDB"/>
-          <path d="M11 29c0-6 9-5.5 9-11.5 0-3.2 3.2-6 7.5-5.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 5.2"/>
-          <circle cx="11" cy="29" r="3.4" fill="#21A89A" stroke="#fff" stroke-width="1.6"/>
-          <circle cx="28.5" cy="11.5" r="4.2" fill="#F3C969" stroke="#fff" stroke-width="1.6"/>
-        </svg>
-        <span class="brand-text">
-          <span class="brand-name">Little<span>Go</span></span>
-          <span class="brand-tagline">Little journeys. Big peace of mind.</span>
-        </span>
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="LittleGo, back to top">
+        <svg class="brand-mark" aria-hidden="true" focusable="false"><use href="#logo-mark"/></svg>
+        <span class="brand-word"><span class="w-little">Little</span><span class="w-go">Go</span></span>
       </a>
 
-      <nav class="site-nav" aria-label="Main">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
-          <span class="nav-toggle-bars" aria-hidden="true"></span>
-          <span class="sr-only">Menu</span>
-        </button>
-        <ul class="nav-menu" id="nav-menu" data-nav-menu>
+      <nav class="nav" aria-label="Main">
+        <ul class="nav-links" id="nav-menu" data-nav-menu role="list">
           <li><a href="#top">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#safety">Safety</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li class="nav-cta-item"><a class="btn btn-primary btn-sm" href="#waitlist" data-track="cta_click" data-track-label="header">Join Waitlist</a></li>
+          <li class="nav-cta-mobile"><a class="btn btn-gold btn-block" href="#waitlist" data-track="cta_click" data-track-label="menu">Join Waitlist</a></li>
         </ul>
       </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-gold btn-sm header-cta" href="#waitlist" data-track="cta_click" data-track-label="header">Join Waitlist</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span class="sr-only">Menu</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- HERO -->
+    <!-- ================= HERO ================= -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container hero-grid">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="status-pill"><span class="status-dot" aria-hidden="true"></span>Coming soon · Starting in Lagos</p>
-          <h1 id="hero-title">Little journeys. <span class="hl">Big peace of mind.</span></h1>
+          <p class="pill pill--dark"><span class="pulse" aria-hidden="true"></span>Coming soon <span class="pill-sep" aria-hidden="true"></span> Lagos pilot</p>
+          <h1 id="hero-title" class="display">Little journeys. <br><span class="display-accent">Big peace of mind.</span></h1>
           <p class="hero-sub">A smarter way to coordinate your children's journeys, from school runs to lessons, sports and beyond.</p>
           <p class="hero-body">LittleGo is being built to help parents coordinate their children's journeys with greater confidence, even when they cannot accompany them.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#waitlist" data-track="cta_click" data-track-label="hero">
+
+          <form class="quick-join" data-quick-join novalidate>
+            <label class="sr-only" for="q-email">Your email address</label>
+            <input id="q-email" type="email" name="q_email" autocomplete="email" inputmode="email" placeholder="Your email address" aria-describedby="q-email-err">
+            <button class="btn btn-gold" type="submit" data-track="cta_click" data-track-label="hero">
               Join the Early-Access Waitlist
               <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-            <a class="btn btn-link" href="#how-it-works" data-track="cta_click" data-track-label="hero_how">See how LittleGo will work</a>
+            </button>
+            <p class="quick-err" id="q-email-err" data-quick-err></p>
+          </form>
+          <div class="hero-meta">
+            <a class="link-quiet" href="#how-it-works" data-track="cta_click" data-track-label="hero_how">See how LittleGo will work</a>
+            <span class="hero-meta-dot" aria-hidden="true"></span>
+            <span>Free to join · Not a booking</span>
           </div>
-          <p class="hero-note">Free to join. No booking or payment — we'll simply let you know when early access opens in your area.</p>
         </div>
 
         <div class="hero-visual" data-hero-visual>
-          <figure class="journey-card">
+          <div class="hero-photo-frame" data-hero-frame>
             <img class="hero-photo" data-hero-photo alt="" hidden>
-            <svg class="journey-map" viewBox="0 0 480 520" role="img" aria-labelledby="map-title">
-              <title id="map-title">Illustration of a child's journey from school to home</title>
-              <defs>
-                <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
-                  <path d="M56 0H0v56" fill="none" stroke="#F3E6CF" stroke-width="2"/>
-                </pattern>
-              </defs>
-              <rect width="480" height="520" fill="#FFF8ED"/>
-              <rect width="480" height="520" fill="url(#grid)"/>
-              <path d="M-20 150C120 130 180 220 300 190s170-40 220-20" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round"/>
-              <path d="M150 -20c20 140-40 260 20 380s-10 160-10 180" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
-              <path d="M-20 400c140-20 260 30 520-10" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
-              <circle cx="380" cy="300" r="46" fill="#E4F4F1"/>
-              <circle cx="70" cy="270" r="34" fill="#FDF0D2"/>
-              <path class="route-line" d="M362 118C300 150 330 230 262 262S128 300 150 370s-30 40-38 46" fill="none" stroke="#245BDB" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
-              <g transform="translate(362 118)">
-                <circle r="26" fill="#F3C969" opacity=".35"/>
-                <circle r="14" fill="#F3C969" stroke="#fff" stroke-width="4"/>
-              </g>
-              <g transform="translate(112 416)">
-                <circle r="26" fill="#21A89A" opacity=".25"/>
-                <circle r="14" fill="#21A89A" stroke="#fff" stroke-width="4"/>
-              </g>
-              <text x="362" y="84" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="15" font-weight="700" fill="#172B4D">School</text>
-              <text x="112" y="462" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="15" font-weight="700" fill="#172B4D">Home</text>
+            <svg class="hero-route" viewBox="0 0 460 560" aria-hidden="true" focusable="false">
+              <path d="M70 520 C 70 380, 260 420, 250 290 S 380 120, 400 40" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2" stroke-dasharray="2 9" stroke-linecap="round"/>
+              <circle cx="70" cy="520" r="7" fill="#2EC4AE"/>
+              <circle cx="400" cy="40" r="7" fill="#F4B400"/>
             </svg>
-            <figcaption class="sr-only">Concept illustration of a planned school-to-home journey.</figcaption>
+          </div>
+
+          <figure class="phone" aria-labelledby="phone-cap">
+            <div class="phone-screen">
+              <div class="phone-notch" aria-hidden="true"></div>
+              <div class="app">
+                <div class="app-top">
+                  <span class="app-hello">This afternoon</span>
+                  <svg class="app-logo" aria-hidden="true"><use href="#logo-mark"/></svg>
+                </div>
+                <div class="app-card">
+                  <div class="app-card-head">
+                    <span class="app-avatar" aria-hidden="true">T</span>
+                    <div>
+                      <p class="app-name">Tolu · School to home</p>
+                      <p class="app-eta">On the way · ETA 3:55</p>
+                    </div>
+                  </div>
+                  <div class="app-map" aria-hidden="true">
+                    <svg viewBox="0 0 260 110" preserveAspectRatio="none">
+                      <path d="M0 80 Q 70 70 120 40 T 260 30" fill="none" stroke="#E4DFD3" stroke-width="12" stroke-linecap="round"/>
+                      <path d="M20 78 Q 70 70 120 42" fill="none" stroke="#008F7A" stroke-width="4" stroke-linecap="round"/>
+                      <path d="M120 42 Q 170 18 236 30" fill="none" stroke="#0F2D5B" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 7"/>
+                      <circle cx="120" cy="42" r="7" fill="#fff" stroke="#008F7A" stroke-width="4"/>
+                      <circle cx="236" cy="30" r="6" fill="#F4B400"/>
+                    </svg>
+                  </div>
+                </div>
+                <ol class="app-steps">
+                  <li class="done"><span class="dot"></span><span>Released at the school gate</span><time>3:12</time></li>
+                  <li class="done"><span class="dot"></span><span>Boarded with the escort</span><time>3:14</time></li>
+                  <li class="now"><span class="dot"></span><span>On the way home</span><time>Now</time></li>
+                  <li><span class="dot"></span><span>Handover to an approved adult</span><time></time></li>
+                </ol>
+                <div class="app-pin"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg>Handover PIN ready</div>
+              </div>
+            </div>
+            <figcaption id="phone-cap" class="phone-cap">Concept preview · not yet live</figcaption>
           </figure>
 
-          <div class="float-card float-card--top" aria-hidden="true">
-            <span class="float-icon float-icon--gold"><svg class="icon"><use href="#i-pin"/></svg></span>
-            <span><strong>Left school</strong><small>On the way home</small></span>
-          </div>
-          <div class="float-card float-card--bottom" aria-hidden="true">
-            <span class="float-icon float-icon--teal"><svg class="icon"><use href="#i-check"/></svg></span>
-            <span><strong>Handed over at home</strong><small>Received by an approved adult</small></span>
-          </div>
-          <p class="concept-tag">Concept of the planned experience</p>
+          <div class="chip-float chip-float--a" aria-hidden="true"><span class="chip-ico chip-ico--teal"><svg class="icon"><use href="#i-check"/></svg></span>Approved adults only</div>
+          <div class="chip-float chip-float--b" aria-hidden="true"><span class="chip-ico chip-ico--gold"><svg class="icon"><use href="#i-people"/></svg></span>Children-only rides</div>
         </div>
       </div>
-    </section>
 
-    <!-- PILOT STRIP -->
-    <section class="pilot-strip" aria-label="Where LittleGo starts">
-      <div class="container pilot-inner">
-        <p><strong>Where we start:</strong> a school-run pilot in Lagos.</p>
-        <span class="pilot-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
-        <p><strong>Where we're headed:</strong> lessons, sports, clubs, grandparents and other trusted destinations.</p>
+      <div class="wrap">
+        <ul class="principles" role="list" aria-label="Designed around">
+          <li><span class="principles-label">Designed around</span></li>
+          <li>Vetted operators</li>
+          <li>Supervised journeys</li>
+          <li>Live journey updates</li>
+          <li>Approved-adult handover</li>
+        </ul>
       </div>
     </section>
 
-    <!-- VALUE -->
+    <!-- ================= ABOUT / VALUE ================= -->
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">About LittleGo</p>
-          <h2 id="about-title">Built around the questions parents actually ask</h2>
-          <p class="lede">Who is driving? Who is with my child? Did they get there? Who did they go home with? LittleGo is being designed so those questions have clear answers — through independent transport operators, coordinated on your behalf.</p>
-        </div>
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Why LittleGo</p>
+          <h2 id="about-title" class="h2">Built around the questions every parent asks.</h2>
+          <p class="lede">Who's driving? Who's with my child? Did they arrive? Who did they go home with? LittleGo is being designed so every one of those has a clear answer, through independent transport operators coordinated on your behalf.</p>
+        </header>
 
-        <ul class="pillars" role="list">
-          <li class="pillar">
-            <span class="pillar-icon pillar-icon--blue"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
-            <h3>Safety by design</h3>
-            <p>Trust and accountability are being built into the service from the start, not added on later.</p>
+        <ul class="bento" role="list">
+          <li class="bento-card bento-card--hero">
+            <div class="bento-top">
+              <span class="ico ico--gold"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3 class="h3">Safety by design</h3>
+              <p>Trust and accountability are being built into the service from the first line of code, not added on later.</p>
+            </div>
+            <div class="bento-art" aria-hidden="true">
+              <div class="ring ring-1"></div><div class="ring ring-2"></div><div class="ring ring-3"></div>
+              <svg class="bento-mark"><use href="#logo-mark"/></svg>
+            </div>
           </li>
-          <li class="pillar">
-            <span class="pillar-icon pillar-icon--teal"><svg class="icon" aria-hidden="true"><use href="#i-badge"/></svg></span>
-            <h3>Trusted operators</h3>
+          <li class="bento-card">
+            <span class="ico ico--teal"><svg class="icon" aria-hidden="true"><use href="#i-badge"/></svg></span>
+            <h3 class="h3">Trusted operators</h3>
             <p>We plan to work only with transport providers who meet defined onboarding requirements.</p>
           </li>
-          <li class="pillar">
-            <span class="pillar-icon pillar-icon--gold"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
-            <h3>Parent-led</h3>
-            <p>Journeys organised around your family's needs — you decide where, when and who receives your child.</p>
+          <li class="bento-card">
+            <span class="ico ico--navy"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
+            <h3 class="h3">Parent-led</h3>
+            <p>Journeys organised around your family. You decide where, when, and who receives your child.</p>
           </li>
-          <li class="pillar">
-            <span class="pillar-icon pillar-icon--navy"><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg></span>
-            <h3>More than school</h3>
-            <p>School runs first. Over time, lessons, sports, clubs and visits to family too.</p>
+          <li class="bento-card bento-card--wide">
+            <div>
+              <span class="ico ico--teal"><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg></span>
+              <h3 class="h3">More than school</h3>
+              <p>We start with school runs in Lagos. Over time, the everyday places your children need to be.</p>
+            </div>
+            <ul class="destinations" role="list" aria-label="Planned destinations">
+              <li class="is-first">School runs <span>Pilot</span></li>
+              <li>Lessons</li>
+              <li>Sports</li>
+              <li>Clubs</li>
+              <li>Grandparents</li>
+            </ul>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="section section--cream" id="how-it-works" aria-labelledby="how-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">How it works</p>
-          <h2 id="how-title">Four steps from request to handover</h2>
-          <p class="lede">This is the experience we are designing. LittleGo is still in development, so details may change before launch.</p>
-          <p class="label-planned"><svg class="icon" aria-hidden="true"><use href="#i-request"/></svg>Planned service experience</p>
-        </div>
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="section section--sand" id="how-it-works" aria-labelledby="how-title">
+      <div class="wrap">
+        <header class="section-head section-head--split">
+          <div>
+            <p class="eyebrow">How it will work</p>
+            <h2 id="how-title" class="h2">From request to handover, in four steps.</h2>
+          </div>
+          <div>
+            <p class="lede">This is the experience we're designing. LittleGo is still in development, so details may change before launch.</p>
+            <p class="tag-planned">Planned service experience</p>
+          </div>
+        </header>
 
         <ol class="steps" role="list">
           <li class="step">
-            <span class="step-num" aria-hidden="true">1</span>
-            <span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-request"/></svg></span>
-            <h3>Request a journey</h3>
+            <span class="step-num" aria-hidden="true">01</span>
+            <h3 class="h3">Request a journey</h3>
             <p>Tell us where your child needs to go, when, and anything we should know.</p>
           </li>
           <li class="step">
-            <span class="step-num" aria-hidden="true">2</span>
-            <span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-coordinate"/></svg></span>
-            <h3>We coordinate</h3>
-            <p>LittleGo matches the journey with a suitable, onboarded transport provider.</p>
+            <span class="step-num" aria-hidden="true">02</span>
+            <h3 class="h3">We coordinate</h3>
+            <p>LittleGo matches the trip with a suitable, onboarded transport provider.</p>
           </li>
           <li class="step">
-            <span class="step-num" aria-hidden="true">3</span>
-            <span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg></span>
-            <h3>Stay informed</h3>
+            <span class="step-num" aria-hidden="true">03</span>
+            <h3 class="h3">Stay informed</h3>
             <p>You receive journey information and updates, as the product supports them at launch.</p>
           </li>
           <li class="step">
-            <span class="step-num" aria-hidden="true">4</span>
-            <span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-handover"/></svg></span>
-            <h3>A safe handover</h3>
-            <p>Your child is received by the adult you approved — and nobody else.</p>
+            <span class="step-num" aria-hidden="true">04</span>
+            <h3 class="h3">A safe handover</h3>
+            <p>Your child is received by the adult you approved, and nobody else.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- SAFETY -->
-    <section class="section" id="safety" aria-labelledby="safety-title">
-      <div class="container safety-grid">
-        <div class="safety-intro">
-          <p class="eyebrow">Safety and trust</p>
-          <h2 id="safety-title">The principles we're building on</h2>
-          <p class="lede">Safety isn't a feature we bolt on. These are the safeguards LittleGo is being designed around. We'll share exactly what is in place, and how it works, before any child travels with us.</p>
-          <aside class="honesty-note">
-            <svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg>
-            <p><strong>Plain-language promise:</strong> everything on this page describes planned safeguards, not services that are running today. We won't claim a safeguard is live until it is.</p>
-          </aside>
-        </div>
+    <!-- ================= SAFETY ================= -->
+    <section class="section section--navy" id="safety" aria-labelledby="safety-title">
+      <div class="wrap safety">
+        <header class="safety-head">
+          <p class="eyebrow eyebrow--gold">Safety and trust</p>
+          <h2 id="safety-title" class="h2">The principles we're building on.</h2>
+          <p class="lede">These are the safeguards LittleGo is being designed around. Before any child travels with us, we'll publish exactly what is in place and how it works.</p>
+          <div class="promise">
+            <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
+            <p><strong>Our plain-language promise.</strong> Everything here describes planned safeguards, not services running today. We won't call anything live until it is.</p>
+          </div>
+        </header>
 
-        <ul class="safety-list" role="list">
-          <li class="safety-item">
-            <span class="safety-icon"><svg class="icon" aria-hidden="true"><use href="#i-badge"/></svg></span>
-            <div>
-              <h3>Provider vetting and onboarding</h3>
-              <p>Transport operators, drivers and the people travelling with children are intended to pass defined checks and onboarding before they take part.</p>
-            </div>
+        <ul class="safety-grid" role="list">
+          <li class="safety-card">
+            <span class="ico ico--glass"><svg class="icon" aria-hidden="true"><use href="#i-badge"/></svg></span>
+            <h3 class="h3">Provider vetting and onboarding</h3>
+            <p>Operators, drivers and the adults travelling with children are intended to pass defined checks and onboarding before they take part.</p>
           </li>
-          <li class="safety-item">
-            <span class="safety-icon"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg></span>
-            <div>
-              <h3>Appropriate supervision</h3>
-              <p>Journeys are being designed for children only, with supervision arrangements suited to the child and the trip — no unrelated adult passengers.</p>
-            </div>
+          <li class="safety-card">
+            <span class="ico ico--glass"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg></span>
+            <h3 class="h3">Appropriate supervision</h3>
+            <p>Journeys designed for children only, with supervision suited to the child and the trip. No unrelated adult passengers.</p>
           </li>
-          <li class="safety-item">
-            <span class="safety-icon"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
-            <div>
-              <h3>Journey visibility and communication</h3>
-              <p>Parents should know when a journey starts, how it's going and when it ends, with a clear way to reach a real person.</p>
-            </div>
+          <li class="safety-card">
+            <span class="ico ico--glass"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
+            <h3 class="h3">Journey visibility</h3>
+            <p>Parents should know when a journey starts, how it's going and when it ends, with a clear way to reach a real person.</p>
           </li>
-          <li class="safety-item">
-            <span class="safety-icon"><svg class="icon" aria-hidden="true"><use href="#i-handover"/></svg></span>
-            <div>
-              <h3>Controlled handover</h3>
-              <p>A child should only ever be handed to an adult the parent has approved — and if nobody approved is there, the child stays safe until they are.</p>
-            </div>
+          <li class="safety-card">
+            <span class="ico ico--glass"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg></span>
+            <h3 class="h3">Controlled handover</h3>
+            <p>A child should only be handed to an adult the parent has approved. If nobody approved is there, the child stays safe until they are.</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- WAITLIST -->
-    <section class="section section--blue" id="waitlist" aria-labelledby="waitlist-title">
-      <div class="container waitlist-grid">
+    <!-- ================= WAITLIST ================= -->
+    <section class="section waitlist-section" id="waitlist" aria-labelledby="waitlist-title">
+      <div class="wrap waitlist">
         <div class="waitlist-copy">
-          <p class="eyebrow eyebrow--light">Early access</p>
-          <h2 id="waitlist-title">Join the early-access waitlist</h2>
-          <p>Be among the first families to hear when LittleGo opens near you, and help us decide where to start.</p>
-          <ul class="checklist" role="list">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Takes under a minute</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>We never ask for your child's name, school or home address</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Not a booking — no payment, no commitment</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Unsubscribe any time</li>
+          <p class="eyebrow">Early access</p>
+          <h2 id="waitlist-title" class="h2">Join the early-access waitlist.</h2>
+          <p class="lede">Be among the first families to hear when LittleGo opens near you, and help us decide where to start.</p>
+          <ul class="assurances" role="list">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Under a minute.</strong> Six quick questions.</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Privacy first.</strong> We never ask for your child's name, school or home address.</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>No commitment.</strong> Not a booking. No payment. Unsubscribe any time.</span></li>
           </ul>
         </div>
 
         <div class="form-card">
           <form class="waitlist-form" data-waitlist-form novalidate>
-            <div class="form-state" data-form-fields>
-              <div class="field">
-                <label for="f-name">Your full name <span class="req" aria-hidden="true">*</span></label>
-                <input id="f-name" name="full_name" type="text" autocomplete="name" required maxlength="120" aria-describedby="f-name-err">
-                <p class="field-error" id="f-name-err" data-error-for="full_name"></p>
-              </div>
-
-              <div class="field">
-                <label for="f-email">Email address <span class="req" aria-hidden="true">*</span></label>
-                <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="f-email-err">
-                <p class="field-error" id="f-email-err" data-error-for="email"></p>
-              </div>
-
-              <div class="field">
-                <label for="f-phone">Phone number <span class="opt">(optional)</span></label>
-                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="e.g. 0803 123 4567" aria-describedby="f-phone-hint f-phone-err">
-                <p class="field-hint" id="f-phone-hint">For launch updates by SMS or WhatsApp.</p>
-                <p class="field-error" id="f-phone-err" data-error-for="phone"></p>
-              </div>
-
-              <div class="field">
-                <label for="f-area">Where do you live? <span class="req" aria-hidden="true">*</span></label>
-                <div class="select-wrap">
-                  <select id="f-area" name="area" required aria-describedby="f-area-hint f-area-err">
-                    <option value="">Choose a broad area</option>
-                    <optgroup label="Lagos">
-                      <option value="lagos_lekki_ajah">Lekki / Ajah / Sangotedo</option>
-                      <option value="lagos_vi_ikoyi">Victoria Island / Ikoyi</option>
-                      <option value="lagos_ikeja">Ikeja / Maryland / Ogba</option>
-                      <option value="lagos_gbagada_magodo">Gbagada / Magodo / Ogudu / Ketu</option>
-                      <option value="lagos_yaba_surulere">Yaba / Surulere / Ebute-Metta</option>
-                      <option value="lagos_festac_amuwo">Festac / Amuwo-Odofin / Satellite Town</option>
-                      <option value="lagos_ikorodu">Ikorodu</option>
-                      <option value="lagos_alimosho">Alimosho / Egbeda / Ikotun</option>
-                      <option value="lagos_other">Elsewhere in Lagos</option>
-                    </optgroup>
-                    <optgroup label="Outside Lagos">
-                      <option value="abuja">Abuja (FCT)</option>
-                      <option value="port_harcourt">Port Harcourt</option>
-                      <option value="ibadan">Ibadan</option>
-                      <option value="other_nigeria">Elsewhere in Nigeria</option>
-                      <option value="outside_nigeria">Outside Nigeria</option>
-                    </optgroup>
-                  </select>
+            <div class="form-fields" data-form-fields>
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
+                  <input id="f-name" name="full_name" type="text" autocomplete="name" required maxlength="120" aria-describedby="f-name-err">
+                  <p class="field-error" id="f-name-err" data-error-for="full_name"></p>
                 </div>
-                <p class="field-hint" id="f-area-hint">A general area only — never your address.</p>
-                <p class="field-error" id="f-area-err" data-error-for="area"></p>
+                <div class="field">
+                  <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+                  <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="f-email-err">
+                  <p class="field-error" id="f-email-err" data-error-for="email"></p>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-phone">Phone <span class="opt">Optional</span></label>
+                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="0803 123 4567" aria-describedby="f-phone-err">
+                  <p class="field-error" id="f-phone-err" data-error-for="phone"></p>
+                </div>
+                <div class="field">
+                  <label for="f-area">Area you live in <span class="req" aria-hidden="true">*</span></label>
+                  <div class="select-wrap">
+                    <select id="f-area" name="area" required aria-describedby="f-area-err">
+                      <option value="">Choose a broad area</option>
+                      <optgroup label="Lagos">
+                        <option value="lagos_lekki_ajah">Lekki / Ajah / Sangotedo</option>
+                        <option value="lagos_vi_ikoyi">Victoria Island / Ikoyi</option>
+                        <option value="lagos_ikeja">Ikeja / Maryland / Ogba</option>
+                        <option value="lagos_gbagada_magodo">Gbagada / Magodo / Ogudu / Ketu</option>
+                        <option value="lagos_yaba_surulere">Yaba / Surulere / Ebute-Metta</option>
+                        <option value="lagos_festac_amuwo">Festac / Amuwo-Odofin / Satellite Town</option>
+                        <option value="lagos_ikorodu">Ikorodu</option>
+                        <option value="lagos_alimosho">Alimosho / Egbeda / Ikotun</option>
+                        <option value="lagos_other">Elsewhere in Lagos</option>
+                      </optgroup>
+                      <optgroup label="Outside Lagos">
+                        <option value="abuja">Abuja (FCT)</option>
+                        <option value="port_harcourt">Port Harcourt</option>
+                        <option value="ibadan">Ibadan</option>
+                        <option value="other_nigeria">Elsewhere in Nigeria</option>
+                        <option value="outside_nigeria">Outside Nigeria</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <p class="field-error" id="f-area-err" data-error-for="area"></p>
+                </div>
               </div>
 
               <fieldset class="field field--group" aria-describedby="f-journeys-err">
-                <legend>Which journeys interest you? <span class="req" aria-hidden="true">*</span> <span class="opt">Choose all that apply</span></legend>
+                <legend>Journeys you're interested in <span class="req" aria-hidden="true">*</span></legend>
                 <div class="chips">
                   <label class="chip"><input type="checkbox" name="journeys" value="school"><span>School runs</span></label>
                   <label class="chip"><input type="checkbox" name="journeys" value="lessons"><span>Lessons and tutoring</span></label>
@@ -363,7 +391,7 @@
               </fieldset>
 
               <div class="field">
-                <label for="f-start">When might you need it? <span class="opt">(optional)</span></label>
+                <label for="f-start">When might you need it? <span class="opt">Optional</span></label>
                 <div class="select-wrap">
                   <select id="f-start" name="start_window">
                     <option value="">Not sure yet</option>
@@ -375,100 +403,101 @@
                 </div>
               </div>
 
-              <!-- Spam trap: hidden from people and screen readers; bots tend to fill it. -->
               <div class="hp" aria-hidden="true">
                 <label for="f-website">Leave this field empty</label>
                 <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
               </div>
 
-              <div class="field field--consent">
+              <div class="field">
                 <label class="consent">
                   <input type="checkbox" name="consent" value="yes" required aria-describedby="f-consent-err">
-                  <span>I'd like LittleGo to email me launch updates about early access. I've read the <a href="privacy.html">privacy notice</a> and can unsubscribe any time.</span>
+                  <span>Email me launch updates about early access. I've read the <a href="privacy.html">privacy notice</a> and can unsubscribe any time.</span>
                 </label>
                 <p class="field-error" id="f-consent-err" data-error-for="consent"></p>
               </div>
 
               <p class="form-alert" role="alert" data-form-alert hidden></p>
 
-              <button class="btn btn-primary btn-lg btn-block" type="submit" data-submit>
+              <button class="btn btn-navy btn-lg btn-block" type="submit" data-submit>
                 <span class="btn-label">Join the Early-Access Waitlist</span>
                 <span class="spinner" aria-hidden="true"></span>
               </button>
-              <p class="form-small">Joining the waitlist is not a booking and does not guarantee service in your area.</p>
+              <p class="form-fine">Joining the waitlist is not a booking and does not guarantee service in your area.</p>
             </div>
 
             <div class="form-success" data-form-success tabindex="-1" hidden>
-              <span class="success-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
-              <h3>You're on the list</h3>
-              <p>Thank you<span data-success-name></span>. We'll email you when early access opens in your area. Nothing else is needed from you for now.</p>
-              <p class="form-small">Joining doesn't book a journey or guarantee service.</p>
+              <span class="success-mark" aria-hidden="true"><svg><use href="#logo-mark"/></svg></span>
+              <h3 class="h2">You're on the list<span data-success-name></span>.</h3>
+              <p>We'll email you when early access opens in your area. Nothing else is needed from you for now.</p>
+              <p class="form-fine">Joining doesn't book a journey or guarantee service.</p>
             </div>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section" id="faq" aria-labelledby="faq-title">
-      <div class="container faq-grid">
-        <div class="section-head section-head--left">
+    <!-- ================= FAQ ================= -->
+    <section class="section section--sand" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq">
+        <header class="faq-head">
           <p class="eyebrow">FAQ</p>
-          <h2 id="faq-title">Questions parents ask</h2>
-          <p class="lede">Something we haven't answered? We'll be adding more as we get closer to launch.</p>
-        </div>
+          <h2 id="faq-title" class="h2">Questions parents ask.</h2>
+          <p class="lede">We'll add more as we get closer to launch.</p>
+        </header>
         <div class="faq-list">
-          <details class="faq">
-            <summary>What is LittleGo?</summary>
-            <p>LittleGo is a parent-directed platform being developed to coordinate children's everyday journeys through independent transport operators. We start with school-to-home trips, and plan to add lessons, sports, clubs and visits to family.</p>
+          <details class="qa">
+            <summary>What is LittleGo?<span class="qa-ico" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <p>A parent-directed platform being developed to coordinate children's everyday journeys through independent transport operators. We start with school-to-home trips, and plan to add lessons, sports, clubs and visits to family.</p>
           </details>
-          <details class="faq">
-            <summary>Is LittleGo available yet?</summary>
+          <details class="qa">
+            <summary>Is LittleGo available yet?<span class="qa-ico" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <p>Not yet. LittleGo is currently being developed and is not taking bookings. Joining the waitlist is the best way to hear first when early access opens.</p>
           </details>
-          <details class="faq">
-            <summary>Which locations will LittleGo serve first?</summary>
+          <details class="qa">
+            <summary>Which locations will LittleGo serve first?<span class="qa-ico" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <p>We're starting with a pilot in Lagos. Where we go next depends partly on demand, so telling us your general area on the waitlist genuinely helps us decide.</p>
           </details>
-          <details class="faq">
-            <summary>What types of journeys will be supported?</summary>
+          <details class="qa">
+            <summary>What types of journeys will be supported?<span class="qa-ico" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <p>School runs come first. Over time we plan to support lessons and tutoring, sports and clubs, and other trusted destinations such as grandparents' homes.</p>
           </details>
-          <details class="faq">
-            <summary>How will safety be approached?</summary>
-            <p>Through provider vetting and onboarding, appropriate supervision, journey updates for parents, and handover only to adults you approve. These are planned safeguards — we'll publish exactly what is in place before launch. <a href="#safety">Read our safety principles</a>.</p>
+          <details class="qa">
+            <summary>How will safety be approached?<span class="qa-ico" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <p>Through provider vetting and onboarding, appropriate supervision, journey updates for parents, and handover only to adults you approve. These are planned safeguards, and we'll publish exactly what is in place before launch. <a href="#safety">Read our safety principles</a>.</p>
           </details>
-          <details class="faq">
-            <summary>How can I join the early-access list?</summary>
+          <details class="qa">
+            <summary>How can I join the early-access list?<span class="qa-ico" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <p>Fill in the short <a href="#waitlist">waitlist form</a>. We only ask for your name, email, a general area and the journeys you're interested in. Joining is free, isn't a booking, and doesn't guarantee service availability.</p>
           </details>
-          <details class="faq">
-            <summary>What will you do with my details?</summary>
+          <details class="qa">
+            <summary>What will you do with my details?<span class="qa-ico" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <p>We use them to send you launch updates and to understand where demand is. We don't sell them. You can unsubscribe or ask us to delete them at any time. See the <a href="privacy.html">privacy notice</a>.</p>
           </details>
         </div>
       </div>
     </section>
+
+    <!-- ================= CLOSING CTA ================= -->
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="wrap closing-inner">
+        <svg class="closing-mark" aria-hidden="true"><use href="#logo-mark"/></svg>
+        <h2 id="closing-title" class="display display--sm">Be first in line when we launch.</h2>
+        <a class="btn btn-gold btn-lg" href="#waitlist" data-track="cta_click" data-track-label="closing">Join the Early-Access Waitlist <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </section>
   </main>
 
+  <!-- ================= FOOTER ================= -->
   <footer class="site-footer">
-    <div class="container footer-grid">
+    <div class="wrap footer-grid">
       <div class="footer-brand">
-        <a class="brand brand--light" href="#top" aria-label="LittleGo home">
-          <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-            <rect width="40" height="40" rx="12" fill="#245BDB"/>
-            <path d="M11 29c0-6 9-5.5 9-11.5 0-3.2 3.2-6 7.5-5.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 5.2"/>
-            <circle cx="11" cy="29" r="3.4" fill="#21A89A" stroke="#fff" stroke-width="1.6"/>
-            <circle cx="28.5" cy="11.5" r="4.2" fill="#F3C969" stroke="#fff" stroke-width="1.6"/>
-          </svg>
-          <span class="brand-text">
-            <span class="brand-name">Little<span>Go</span></span>
-            <span class="brand-tagline">Little journeys. Big peace of mind.</span>
-          </span>
+        <a class="brand brand--light" href="#top" aria-label="LittleGo, back to top">
+          <svg class="brand-mark" aria-hidden="true" focusable="false"><use href="#logo-mark"/></svg>
+          <span class="brand-word"><span class="w-little">Little</span><span class="w-go">Go</span></span>
         </a>
-        <p class="footer-note">Being built in Lagos, Nigeria. Coming soon.</p>
+        <p class="footer-tagline">Little journeys. Big peace of mind.</p>
+        <p class="footer-note">Being built in Lagos, Nigeria.</p>
       </div>
-
       <nav aria-label="Footer">
         <h2 class="footer-heading">Explore</h2>
         <ul role="list">
@@ -477,18 +506,15 @@
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#safety">Safety</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#waitlist">Join Waitlist</a></li>
         </ul>
       </nav>
-
       <div>
         <h2 class="footer-heading">Contact</h2>
         <p class="footer-contact" data-contact></p>
         <ul class="social" role="list" data-social hidden></ul>
       </div>
     </div>
-
-    <div class="container footer-bottom">
+    <div class="wrap footer-bottom">
       <p>© <span data-year>2026</span> LittleGo. All rights reserved.</p>
       <ul role="list">
         <li><a href="privacy.html">Privacy Notice</a></li>
@@ -501,7 +527,7 @@
     <p>We'd like to measure visits to improve this page. No advertising, no selling data.</p>
     <div class="consent-actions">
       <button class="btn btn-ghost btn-sm" type="button" data-consent="denied">No thanks</button>
-      <button class="btn btn-primary btn-sm" type="button" data-consent="granted">Allow</button>
+      <button class="btn btn-navy btn-sm" type="button" data-consent="granted">Allow</button>
     </div>
   </div>
 

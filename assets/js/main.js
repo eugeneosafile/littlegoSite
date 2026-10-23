@@ -101,7 +101,7 @@
     if (photo && CONFIG.heroPhoto) {
       photo.addEventListener("load", function () {
         photo.hidden = false;
-        $("[data-hero-visual]").classList.add("has-photo");
+        $("[data-hero-frame]").classList.add("has-photo");
       });
       photo.addEventListener("error", function () { photo.remove(); });
       photo.alt = CONFIG.heroPhotoAlt || "";
@@ -136,7 +136,7 @@
 
     // Highlight the section currently in view.
     if (!("IntersectionObserver" in window)) return;
-    var links = $$('.nav-menu a[href^="#"]:not(.btn)');
+    var links = $$('.nav-links a[href^="#"]:not(.btn)');
     var byId = {};
     links.forEach(function (l) { byId[l.getAttribute("href").slice(1)] = l; });
     var observer = new IntersectionObserver(function (entries) {
@@ -352,12 +352,49 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+   * Hero quick join — collects the email, then hands over to the full form.
+   * Nothing is submitted from here.
+   * ---------------------------------------------------------------------- */
+  function initQuickJoin() {
+    var quick = $("[data-quick-join]");
+    if (!quick) return;
+    var input = $("#q-email", quick);
+    var err = $("[data-quick-err]", quick);
+    quick.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = input.value.trim();
+      if (email && !EMAIL_RE.test(email)) {
+        err.textContent = "That email address doesn't look right — please check it.";
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        return;
+      }
+      err.textContent = "";
+      input.removeAttribute("aria-invalid");
+      var target = $("#f-email");
+      if (email && target) {
+        target.value = email;
+        target.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      var section = document.getElementById("waitlist");
+      if (section) section.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      var next = $(email ? "#f-name" : "#f-email");
+      if (next) setTimeout(function () { next.focus({ preventScroll: true }); }, 450);
+      Analytics.track("waitlist_quick_start", { prefilled: !!email });
+    });
+    input.addEventListener("input", function () {
+      if (err.textContent) { err.textContent = ""; input.removeAttribute("aria-invalid"); }
+    });
+  }
+
   function init() {
     applyConfig();
     Analytics.init();
     initNav();
     initTracking();
     initForm();
+    initQuickJoin();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
