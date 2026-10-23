@@ -24,7 +24,7 @@ window.LITTLEGO_CONFIG = {
   // plain text marked "launching soon" instead of a mailto link.
   // ---------------------------------------------------------------------------
   contactEmail: "hello@littlego.ng",
-  contactEmailReady: false,
+  contactEmailReady: true,
 
   // ---------------------------------------------------------------------------
   // SOCIAL PROFILES — add only real URLs. Empty entries are not shown.

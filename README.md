@@ -30,10 +30,10 @@ Nothing below is faked. Each item is visible in the code and listed here so it c
 | **Waitlist backend** | Connected: `waitlistEndpoint` points at `https://littlego-api.onrender.com/public/waitlist` (in the `littlego` repo since commit `0fa1957`). The form only shows success when the API returns 2xx. | Add `https://littlego.ng,https://www.littlego.ng` to `LITTLEGO_CORS_ORIGINS` on `littlego-api`, or browsers will block the request. |
 | **Hero photo** | No licensed photo yet. The hero frame shows a route illustration behind the app concept. | License or commission a photo of a Nigerian parent and school-age child (WebP, ~1000×1200, under 180 KB). Put it in `assets/img/` and set `heroPhoto` and `heroPhotoAlt` in `config.js`. It fills the frame behind the phone automatically. |
 | **App concept in the hero** | Illustrative screen, captioned "Concept preview · not yet live". | Replace with real screenshots once the app is closer to launch. |
-| **Contact email** | `hello@littlego.ng` shown as plain text with "Mailbox launching soon". | Create the mailbox, then set `contactEmailReady: true`. |
+| **Contact email** | `hello@littlego.ng` is live and linked in the footer, privacy notice and terms. | — |
 | **Social links** | None shown. | Add real profile URLs to `social` in `config.js`. |
-| **Privacy notice** | Draft describing exactly what the form collects, marked as draft. | Lawyer review (Nigeria Data Protection Act 2023); remove the draft banner. |
-| **Terms of Use** | Placeholder page. | Replace with lawyer-drafted terms before launch. |
+| **Privacy notice** | Published. Names Netpole Solutions as responsible, describes exactly what the form collects, gives the contact for requests. Last updated 23 Oct 2026 (in an HTML comment, not shown). | A lawyer's review against the Nigeria Data Protection Act 2023 is still recommended. |
+| **Terms of Use** | Website and waitlist terms only; says full service terms come before any service begins. | Lawyer-drafted service terms before launch. |
 | **Analytics** | Off. | Set `analytics.enabled: true` and `analytics.scriptSrc` (Plausible or GTM). A consent banner appears; events reach `window.dataLayer` only after "Allow". |
 | **Fonts** | Bricolage Grotesque, Geist and Plus Jakarta Sans (wordmark) from Google Fonts. | Optional: self-host for speed. Before printing the logo, convert the wordmark to outlines. |
 | **Unsubscribe** | Table has `unsubscribed_at`; no handler yet. | Add with your email tool. |
