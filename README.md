@@ -8,12 +8,14 @@ Plain HTML, CSS and JavaScript: no build step, no framework, nothing to install.
 ```
 littlegoSite/
 ├── index.html              Page content and structure
-├── privacy.html            Waitlist privacy notice (DRAFT — needs legal review)
-├── terms.html              Terms of Use (PLACEHOLDER)
-├── config.js               Everything environment-specific: form endpoint, contact, photo, analytics
+├── privacy.html            Privacy Policy (NDP Act 2023 / GAID 2025)
+├── cookies.html            Cookie Policy
+├── terms.html              Website and waitlist terms
+├── config.js               Everything editable: form endpoint, areas list, company names, contact, photo, analytics
 ├── assets/css/styles.css   Design system (tokens at the top) and page styles
 ├── assets/js/main.js       Navigation, config, consent-gated analytics, waitlist form, hero quick-join
 ├── assets/img/             Logo (Option A) files, favicons, app icons, og-image.png
+├── assets/fonts/           Self-hosted fonts (no third-party requests) and their licences
 ├── site.webmanifest, robots.txt, sitemap.xml
 ├── render.yaml             Render static-site blueprint
 └── integration/fastapi_waitlist.py   Waitlist API route for the LittleGo backend
@@ -32,16 +34,29 @@ Nothing below is faked. Each item is visible in the code and listed here so it c
 | **App concept in the hero** | Illustrative screen, captioned "Concept preview · not yet live". | Replace with real screenshots once the app is closer to launch. |
 | **Contact email** | `hello@littlego.ng` is live and linked in the footer, privacy notice and terms. | — |
 | **Social links** | None shown. | Add real profile URLs to `social` in `config.js`. |
-| **Privacy notice** | Published. Names Netpole Solutions as responsible, describes exactly what the form collects, gives the contact for requests. Last updated 23 Oct 2026 (in an HTML comment, not shown). | A lawyer's review against the Nigeria Data Protection Act 2023 is still recommended. |
+| **Privacy Policy** | Published, structured on the NDP Act 2023 and GAID 2025: controller, principles, data collected, lawful bases, consent, sharing, transfers (Render, Frankfurt), retention (24 months after launch in the area), security, rights, requests, children, breach, changes. Last-updated date kept in an HTML comment only. | Add the registered office address in sections 1 and 17. Confirm the 24-month retention period. A lawyer's review is still recommended. |
+| **Cookie Policy and consent** | Published. A dialog blocks the home page until the visitor chooses Necessary only, Accept all, or their own categories; "Cookie settings" in the footer reopens it. Only the stored choice is used today; analytics stays off unless enabled and allowed. | If analytics is switched on: list the tool in `cookies.html` and bump `CHOICE_VERSION` in `assets/js/main.js` so everyone is asked again. |
 | **Terms of Use** | Website and waitlist terms only; says full service terms come before any service begins. | Lawyer-drafted service terms before launch. |
 | **Analytics** | Off. | Set `analytics.enabled: true` and `analytics.scriptSrc` (Plausible or GTM). A consent banner appears; events reach `window.dataLayer` only after "Allow". |
-| **Fonts** | Bricolage Grotesque, Geist and Plus Jakarta Sans (wordmark) from Google Fonts. | Optional: self-host for speed. Before printing the logo, convert the wordmark to outlines. |
+| **Fonts** | Self-hosted in `assets/fonts/` (SIL Open Font License). | Before printing the logo, convert the wordmark to outlines. |
 | **Unsubscribe** | Table has `unsubscribed_at`; no handler yet. | Add with your email tool. |
 
 ### Analytics events (once enabled)
 `page_view`, `cta_click` (label: `header`, `menu`, `hero`, `hero_how`, `closing`), `waitlist_quick_start`, `waitlist_start`, `waitlist_invalid`, `waitlist_submit`, `waitlist_success` (area, journeys), `waitlist_error` (reason).
 
 ---
+
+### Updating the area list
+
+The "Area you live in" options come from `areas` in `config.js`, grouped (Lagos Island and Lekki, Lagos Mainland, Ikeja and surrounds, Lagos–Ogun border, Outside Lagos).
+
+- **Add an area:** copy a line inside the right group and give it a new `value` (lower case letters, numbers and underscores, up to 40 characters) and a `label`, e.g. `{ value: "lagos_ogudu", label: "Ogudu / Ojota" },`. Commit and push; Render publishes it in a minute or two. The API accepts any well-formed code, so no backend change is needed.
+- **Rename an area:** change only its `label`. Never change a `value` people have already chosen, or their sign-ups will be counted separately in the ops view.
+- **Remove an area:** delete its line. Existing sign-ups keep their code.
+
+### Company names
+
+`brandName` ("NetPole Solutions") and `legalName` ("NetPole Solutions Limited") are in `config.js`. The legal pages and footer use the legal name; "NetPole Solutions Ltd" is fine where an abbreviation is conventional.
 
 ## 2. Deploy to littlego.ng on Render
 
@@ -130,6 +145,11 @@ Headless Chromium against the local site with the real fonts loaded; the API wit
 | 201 → success panel with focus; payload contains no child, school or address fields | Pass |
 | 500, 422, 429, timeout and network-down each show the right message and keep entries | Pass |
 | Honeypot filled → nothing sent | Pass |
+| Area list built from config.js (34 areas, incl. Shomolu) | Pass |
+| "I do not agree" blocks submission with an explanation | Pass |
+| Hero email field: visible label, solid white field | Pass |
+| Cookie dialog: shows on first visit, blocks the page (inert), keeps focus, ignores Escape, "Necessary only" and custom choices saved, not asked again, "Cookie settings" reopens it | Pass |
+| Privacy, Cookie and Terms pages load without the blocking dialog | Pass |
 | Colour contrast of all text pairs (WCAG AA) | Pass |
 | API: normalised save, duplicate merge, 422 messages, spam traps, rate limit, bad JSON | Pass |
 

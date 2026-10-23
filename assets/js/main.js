@@ -7,65 +7,140 @@
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
   /* ------------------------------------------------------------------------
-   * Analytics — events are queued in memory and only released to
-   * window.dataLayer once the visitor consents. Nothing is sent by default.
+   * Privacy choice (cookie consent) and analytics.
+   * The page is blocked by a dialog until the visitor chooses. "Necessary
+   * only" is always a valid choice. Analytics events are queued in memory and
+   * released only if the visitor allows analytics AND analytics is enabled in
+   * config.js. The choice is kept in localStorage (strictly necessary).
+   * Bump CHOICE_VERSION when the Cookie Policy changes materially, so everyone
+   * is asked again.
    * ---------------------------------------------------------------------- */
-  var Analytics = (function () {
-    var KEY = "lg-analytics-consent";
-    var enabled = !!(CONFIG.analytics && CONFIG.analytics.enabled);
+  var CHOICE_VERSION = 1;
+  var Consent = (function () {
+    var KEY = "lg-privacy-choice";
+    var analyticsEnabled = !!(CONFIG.analytics && CONFIG.analytics.enabled);
+    var choice = null;   // { v, analytics, at }
     var queue = [];
-    var consent = null;
+    var scriptLoaded = false;
+    var lastFocus = null;
+    var modal, dialog;
 
-    function readConsent() {
-      try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    function read() {
+      try {
+        var c = JSON.parse(localStorage.getItem(KEY) || "null");
+        return c && c.v === CHOICE_VERSION ? c : null;
+      } catch (e) { return null; }
     }
-    function writeConsent(v) {
-      try { localStorage.setItem(KEY, v); } catch (e) { /* storage blocked: consent lasts this visit */ }
+    function write(c) {
+      try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) { /* storage blocked: choice lasts this visit */ }
     }
+    function analyticsAllowed() { return !!(choice && choice.analytics && analyticsEnabled); }
     function loadScript() {
       var src = CONFIG.analytics && CONFIG.analytics.scriptSrc;
-      if (!src) return;
-      var s = document.createElement("script");
-      s.async = true; s.src = src;
-      document.head.appendChild(s);
+      if (!src || scriptLoaded) return;
+      scriptLoaded = true;
+      var el = document.createElement("script");
+      el.async = true; el.src = src;
+      document.head.appendChild(el);
     }
-    function flush() {
-      window.dataLayer = window.dataLayer || [];
-      while (queue.length) window.dataLayer.push(queue.shift());
-    }
-    function setConsent(v) {
-      consent = v; writeConsent(v);
-      if (v === "granted") { loadScript(); flush(); } else { queue = []; }
-    }
-    function init() {
-      if (!enabled) return;
-      consent = readConsent();
-      var banner = $("[data-consent-banner]");
-      if (consent === "granted") { loadScript(); }
-      else if (consent !== "denied" && banner) {
-        banner.hidden = false;
-        $$("[data-consent]", banner).forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            setConsent(btn.getAttribute("data-consent"));
-            banner.hidden = true;
-          });
-        });
+    function apply() {
+      if (analyticsAllowed()) {
+        loadScript();
+        window.dataLayer = window.dataLayer || [];
+        while (queue.length) window.dataLayer.push(queue.shift());
+      } else {
+        queue = [];
       }
     }
+    function setPageInert(on) {
+      $$("body > header, body > main, body > footer, body > .skip-link").forEach(function (el) {
+        if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert");
+      });
+      document.documentElement.classList.toggle("modal-open", on);
+    }
+    function showPrefs(on) {
+      $("[data-cookie-prefs]", modal).hidden = !on;
+      $("[data-cookie-customise]", modal).hidden = on;
+      $('[data-cookie-choice="all"]', modal).hidden = on;
+      $('[data-cookie-choice="custom"]', modal).hidden = !on;
+    }
+    function open(withPrefs) {
+      if (!modal) return;
+      lastFocus = document.activeElement;
+      var box = $("[data-pref-analytics]", modal);
+      box.checked = !!(choice && choice.analytics);
+      showPrefs(!!withPrefs);
+      modal.hidden = false;
+      setPageInert(true);
+      var first = $(".cookie-actions button:not([hidden])", modal);
+      (first || dialog).focus();
+    }
+    function close() {
+      modal.hidden = true;
+      setPageInert(false);
+      if (lastFocus && lastFocus.focus && document.contains(lastFocus)) lastFocus.focus();
+    }
+    function decide(kind) {
+      var analytics = kind === "all" ? true : kind === "custom" ? $("[data-pref-analytics]", modal).checked : false;
+      choice = { v: CHOICE_VERSION, analytics: analytics, at: new Date().toISOString() };
+      write(choice);
+      close();
+      apply();
+    }
+    function trapFocus(e) {
+      if (e.key !== "Tab" || modal.hidden) return;
+      var items = $$('a[href], button:not([hidden]):not([disabled]), input:not([disabled])', dialog)
+        .filter(function (el) { return el.offsetParent !== null; });
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+    function init() {
+      modal = $("[data-cookie-modal]");
+      if (!modal) return;
+      dialog = $(".cookie-dialog", modal);
+      $$("[data-cookie-choice]", modal).forEach(function (btn) {
+        btn.addEventListener("click", function () { decide(btn.getAttribute("data-cookie-choice")); });
+      });
+      $("[data-cookie-customise]", modal).addEventListener("click", function () {
+        showPrefs(true);
+        $("[data-pref-analytics]", modal).focus();
+      });
+      document.addEventListener("keydown", trapFocus);
+      $$("[data-cookie-settings]").forEach(function (b) { b.addEventListener("click", function () { open(true); }); });
+      choice = read();
+      if (choice) apply(); else open(false);
+    }
     function track(event, props) {
-      if (!enabled) return;
+      if (!analyticsEnabled) return;
       var payload = Object.assign({ event: event }, props || {});
-      if (consent === "granted") { window.dataLayer = window.dataLayer || []; window.dataLayer.push(payload); }
-      else if (consent !== "denied") { queue.push(payload); }
+      if (analyticsAllowed()) { window.dataLayer = window.dataLayer || []; window.dataLayer.push(payload); }
+      else if (!choice) { queue.push(payload); }
     }
     return { init: init, track: track };
   })();
+  var Analytics = Consent;
 
   /* ------------------------------------------------------------------------
    * Config-driven content
    * ---------------------------------------------------------------------- */
   function applyConfig() {
     $$("[data-year]").forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
+
+    var areaSelect = $("[data-area-select]");
+    if (areaSelect && Array.isArray(CONFIG.areas)) {
+      CONFIG.areas.forEach(function (group) {
+        var og = document.createElement("optgroup");
+        og.label = group.group;
+        (group.options || []).forEach(function (o) {
+          var opt = document.createElement("option");
+          opt.value = o.value; opt.textContent = o.label;
+          og.appendChild(opt);
+        });
+        areaSelect.appendChild(og);
+      });
+    }
 
     var contact = $("[data-contact]");
     if (contact && CONFIG.contactEmail) {
@@ -166,7 +241,10 @@
    * ---------------------------------------------------------------------- */
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var PHONE_RE = /^\+?\d{8,15}$/;
-  var CONSENT_TEXT = "I'd like LittleGo to email me launch updates about early access. I've read the privacy notice and can unsubscribe any time.";
+  function consentText() {
+    var el = $("#f-consent-text");
+    return el ? el.textContent.replace(/\s+/g, " ").trim().slice(0, 400) : "";
+  }
 
   function initForm() {
     var form = $("[data-waitlist-form]");
@@ -188,7 +266,7 @@
         area: String(fd.get("area") || ""),
         journeys: fd.getAll("journeys").map(String),
         start_window: String(fd.get("start_window") || ""),
-        consent: fd.get("consent") === "yes",
+        consent: String(fd.get("consent") || ""),
         website: String(fd.get("website") || "")
       };
     }
@@ -201,12 +279,14 @@
       if (v.phone && !PHONE_RE.test(v.phone)) errors.phone = "Please enter a valid phone number, e.g. 0803 123 4567 or +234 803 123 4567.";
       if (!v.area) errors.area = "Please choose the area you live in.";
       if (!v.journeys.length) errors.journeys = "Please choose at least one type of journey.";
-      if (!v.consent) errors.consent = "Please agree to receive launch updates so we can let you know when we open.";
+      if (!v.consent) errors.consent = "Please choose whether you agree.";
+      else if (v.consent !== "agree") errors.consent = "We can only add you to the waitlist with your consent. If you change your mind, choose \u201cI agree\u201d.";
       return errors;
     }
 
     function controlFor(name) {
-      if (name === "journeys") return $(".field--group", form);
+      if (name === "journeys") return $(".field--group:not(.consent-box)", form);
+      if (name === "consent") return $(".consent-box", form);
       return form.elements[name];
     }
 
@@ -252,7 +332,7 @@
       var name = e.target.name;
       if (!name || name === "website") return;
       if (submitted) showErrors(validate(values()), name);
-      else if (e.target.getAttribute("aria-invalid") === "true" || (name === "journeys" && $(".field--group", form).getAttribute("aria-invalid"))) {
+      else if (e.target.getAttribute("aria-invalid") === "true" || (name === "journeys" && $(".field--group:not(.consent-box)", form).getAttribute("aria-invalid"))) {
         showErrors(validate(values()), name);
       }
       if (!alertBox.hidden && alertBox.getAttribute("data-tone") === "error") setAlert("");
@@ -304,7 +384,7 @@
         journeys: v.journeys,
         start_window: v.start_window || null,
         consent: true,
-        consent_text: CONSENT_TEXT,
+        consent_text: consentText(),
         source: location.hostname || "littlego.ng",
         utm_source: params.get("utm_source") || null,
         utm_medium: params.get("utm_medium") || null,
